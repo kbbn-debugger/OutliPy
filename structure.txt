@@ -1,0 +1,46 @@
+outlipy/
+│
+├── detection/                         # All detector classes
+│   ├── __init__.py
+│   ├── base.py                        # BaseOutlierDetector (abstract)
+│   ├── iqr.py                         # IQRDetector
+│   ├── zscore.py                      # ZScoreDetector
+│   ├── modified_z.py                  # ModifiedZScoreDetector
+│   ├── percentile.py                  # PercentileDetector
+│   ├── mahalanobis.py                 # MahalanobisDetector (multivariate)
+│
+├── handling/                          # All handling classes
+│   ├── __init__.py
+│   ├── base.py                        # BaseOutlierHandler (abstract)
+│   ├── remove.py                      # RemovalHandler
+│   ├── replace.py                     # ReplacementHandler
+│   ├── winsorize.py                   # WinsorizationHandler
+│   ├── interpolate.py                 # InterpolationHandler
+│   ├── group_based.py                 # GroupBasedHandler (optional)
+│
+├── reporting/
+│   ├── __init__.py
+│   ├── reporter.py                    # OutlierReporter
+│
+├── core/
+│   ├── __init__.py
+│   ├── processor.py                   # OutlierProcessor (orchestrator)
+│   ├── autodetect.py                  # ColumnDetector (automatic column detection)
+│
+├── accessors/                         # Pandas integration
+│   ├── __init__.py
+│   ├── dataframe.py                   # DataFrame accessor → df.outli
+│   ├── series.py                      # Series accessor → df["col"].outli
+│
+├── utils/
+│   ├── __init__.py
+│   ├── decorators.py                  # Optional decorators (validation/logging)
+│   ├── validation.py                  # Type checks, numeric checks
+│   ├── helpers.py                     # Common utility functions
+│
+├── exceptions.py                      # Custom exception system
+│
+├── config.py                          # Default configuration + constants
+│
+├── __init__.py                        # Expose public API
+└── setup.py / pyproject.toml          # Packaging metadata
