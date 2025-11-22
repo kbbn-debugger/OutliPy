@@ -1,0 +1,130 @@
+✅ 1. InvalidColumnException — ICE-series
+
+Purpose: Column-related validation failures before detection or handling.
+
+Recommended ICE codes
+
+ICE001 – Missing columns (done)
+
+ICE002 – Invalid columns (not in DataFrame) (done)
+
+ICE003 – No valid numeric columns among selected ones (done)
+
+ICE004 – Column exists but contains only NaN (to be made)
+
+ICE005 – Unsupported column dtype (object, category, datetime) (done)
+
+ICE006 – Duplicate column names (to be made)
+
+ICE007 – Empty column (0 non-NaN values) (to be made)
+
+✔ These belong here — not in DetectionException.
+
+✅ 2. ConfigurationException — CON-series
+
+Purpose: Invalid or inconsistent detector/handler configuration.
+
+Examples:
+
+Using a threshold < 0
+
+Passing both k and contamination, which are mutually exclusive
+
+Passing unexpected keyword arguments to a detector
+
+Missing required parameters
+
+Recommended CON codes
+
+CON001 – Missing required configuration parameter
+
+CON002 – Invalid parameter value (e.g., threshold ≤ 0)
+
+CON003 – Conflicting configuration parameters
+
+CON004 – Unsupported detection method
+
+CON005 – Parameter type mismatch
+
+CON006 – Too few rows to use chosen method
+
+✔ These do not belong in DetectionException.
+
+✅ 3. DetectionException — DET-series
+
+Purpose: Failures during the detection algorithm itself.
+Meaning: Input was valid, configuration was valid — but the detection method failed at runtime.
+
+This list must stay tight and algorithm-focused.
+
+Recommended DET Codes
+
+DET001 – No data left after preprocessing
+(e.g., entire column became NaN after cleaning)
+
+DET002 – No numeric data available for computation
+(all values dropped or became non-numeric mid-process)
+
+DET003 – Zero variance
+(z-score fails)
+
+DET004 – Zero IQR
+(IQR detector cannot compute bounds)
+
+DET005 – Zero MAD (median absolute deviation)
+(Modified z-score fails)
+
+DET006 – Score computation resulted in NaN or inf
+(normalization step failed)
+
+DET007 – Detection flagged zero rows unexpectedly
+(e.g., threshold too extreme or array collapsed)
+
+DET008 – Detection flagged all rows
+(often indicates threshold miscalibration)
+
+DET009 – Custom detector returned wrong shape or dtype
+(output misaligned with DataFrame)
+
+✔ These are true detection-stage failures, not validation errors.
+
+✅ 4. MultivariateException — MVT-series
+
+Purpose: Errors specific to multivariate algorithms (Mahalanobis, PCA, covariance-based detection).
+
+Recommended MVT Codes
+
+MVT001 – Singular covariance matrix
+(cannot invert)
+
+MVT002 – Too few samples for multivariate method
+(rows < dimensions)
+
+MVT003 – Non-positive-definite covariance matrix
+
+MVT004 – Mahalanobis distance computation failed
+(NaN, inf, or unexpected outputs)
+
+MVT005 – Corrupted or ill-conditioned matrix
+
+✔ Keeps multivariate concerns from polluting general detection errors.
+
+✅ 5. HandlingException — HEX-series
+
+Purpose: Failures in the handling stage (removal, replacement, winsorization).
+
+Recommended HEX Codes
+
+HEX001 – Handling method is not supported
+
+HEX002 – Strategy requires numeric data, but none available
+
+HEX003 – Replacement value invalid or out of bounds
+
+HEX004 – Winsorization produced invalid results
+
+HEX005 – Attempted to replace outliers in non-numeric columns
+
+HEX006 – No outliers found for handling, but handling was forced
+
+✔ These are never detection failures.
