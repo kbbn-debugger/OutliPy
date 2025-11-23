@@ -36,7 +36,11 @@ class HandlingException(OutliPyException):
     Raised when outlier handling (removal, replacement, winsorization, etc.) fails
     due to invalid strategy, configuration, or data issues.
     """
-    default_error_code = "HEX000"
-
-
-    pass
+    def __init__(self,
+                 error_code: str,
+                 *,
+                 method: Optional[str] = None,
+                 allowed_methods: Optional[List[str]] = None,
+                 fill_value: Optional[float] = None
+                 ):
+        pass
