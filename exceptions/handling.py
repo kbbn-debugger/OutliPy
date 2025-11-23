@@ -1,5 +1,7 @@
 from base import OutliPyException
 from typing import Optional, List
+from error_codes import ErrorCodeRegistry
+
 
 class HandlingException(OutliPyException):
     """
