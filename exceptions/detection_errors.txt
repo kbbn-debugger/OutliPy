@@ -115,16 +115,16 @@ Purpose: Failures in the handling stage (removal, replacement, winsorization).
 
 Recommended HEX Codes
 
-HEX001 – Handling method is not supported
+HEX001 – Handling method is not supported (done)
 
 HEX002 – Strategy requires numeric data, but none available (ICE002)
 
-HEX002 – Replacement value invalid or out of bounds
+HEX002 – Replacement value invalid or out of bounds (done)
 
-HEX003 – Winsorization produced invalid results
+HEX003 – Winsorization produced invalid results (done)
 
-HEX004 – Attempted to replace outliers in non-numeric columns
+HEX004 – Attempted to replace outliers in non-numeric columns (ICE002)
 
-HEX005 – No outliers found for handling, but handling was forced
+HEX005 – No outliers found for handling, but handling was forced (HEX000 - done)
 
 ✔ These are never detection failures.

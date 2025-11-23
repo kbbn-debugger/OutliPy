@@ -37,7 +37,7 @@ class OutlierDetectorBase(ABC):
         # Check if DataFrame is empty
         if df.empty:
             raise InvalidColumnException(
-                detector = detector_name,
+                method = detector_name,
                 error_code = "ICE007",
                 suggestion = "Please input a non-empty DataFrame"
             )
@@ -46,7 +46,7 @@ class OutlierDetectorBase(ABC):
         if df.columns.duplicated().any():
             dup_list = df.columns[df.columns.duplicated()].unique().to_list()
             raise InvalidColumnException(
-                detector = detector_name,
+                method = detector_name,
                 duplicated = dup_list
             )
 
@@ -57,14 +57,14 @@ class OutlierDetectorBase(ABC):
             # If still empty, it means no numeric data exists in the whole DF
             if not self.columns:
                 raise InvalidColumnException(
-                    detector=detector_name,
-                    no_numeric=True                 # Flags the no_numeric into True, raises ICE002
+                    method = detector_name,
+                    no_numeric = True                 # Flags the no_numeric into True, raises ICE002
                 )
         else:
             # Flags if user input an empty list. Default is None
             if not self.columns:
                 raise InvalidColumnException(
-                    detector = detector_name,
+                    method = detector_name,
                     error_code = "ICE000",
                     suggestion = "You provided an empty list of columns. Please specify columns."
                 )
@@ -75,7 +75,7 @@ class OutlierDetectorBase(ABC):
                 dupes = [x for x in self.columns if x in seen or seen.add(x)]
                 raise InvalidColumnException(
                     error_code = "ICE005",
-                    detector = detector_name,
+                    method = detector_name,
                     duplicated = dupes,
                     suggestion = "Remove duplicate column names from your configuration list."
                 )               
@@ -99,7 +99,7 @@ class OutlierDetectorBase(ABC):
         # Raise Exception if ANY more issues found
         if missing_cols or invalid_cols or nan_cols:
             raise InvalidColumnException(
-                detector = detector_name,
+                method = detector_name,
                 missing = missing_cols,
                 invalid = invalid_cols,
                 nan_cols = nan_cols
