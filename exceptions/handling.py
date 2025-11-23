@@ -1,6 +1,6 @@
 from base import OutliPyException
 from typing import Optional, List
-from error_codes import ErrorCodeRegistry
+from exceptions.error_code_registry import ErrorCodeRegistry
 
 ErrorCodeRegistry.register(
     "HEX000",
