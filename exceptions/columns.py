@@ -121,7 +121,7 @@ class InvalidColumnException(OutliPyException):
         # Pass it back to the base.
         super().__init__(
             error_code = code,
-            detector = detector,
-            suggestion = suggestion,
+            method = detector,              # both the detector and handler use the same validation for columns, so method is appropriate
+            suggestion = suggestion,        # and we use detector so that it stays specific to here.
             context = context_data
         )

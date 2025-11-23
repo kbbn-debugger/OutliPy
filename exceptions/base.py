@@ -10,13 +10,13 @@ class OutliPyException(Exception, ABC):
 
     def __init__(self, *, 
                  error_code: str,
-                 detector: str,
+                 method: str,
                  context: Optional[Dict[str, Any]] = None,
                  suggestion: Optional[str] = None
                  ):
         
         self.error_code = error_code
-        self.detector = detector
+        self.method = method
         self.context = context or {} 
         self.suggestion = suggestion or "Please check your configuration."
         
@@ -25,7 +25,7 @@ class OutliPyException(Exception, ABC):
 
     def _build_message(self) -> str:
         """
-        Builds the exception message from template using the error code, detector, suggestion, and context.
+        Builds the exception message from template using the error code, method, suggestion, and context.
 
         Returns:
             str: The message.
@@ -34,14 +34,14 @@ class OutliPyException(Exception, ABC):
 
         if template is None:
             return (
-                f"[{self.detector}] - {self.default_error_code}\n"
+                f"[{self.method}] - {self.default_error_code}\n"
                 f"Context: Unknown OutliPy Error.\n"
                 f"Suggestion: Please report us the error"
             )
 
         return template.format(
-            error_code=self.error_code,
-            detector=self.detector,
-            suggestion=self.suggestion,
+            error_code = self.error_code,
+            method = self.method,               
+            suggestion = self.suggestion,       
             **self.context 
         )
