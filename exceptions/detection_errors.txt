@@ -117,14 +117,14 @@ Recommended HEX Codes
 
 HEX001 – Handling method is not supported
 
-HEX002 – Strategy requires numeric data, but none available
+HEX002 – Strategy requires numeric data, but none available (ICE002)
 
-HEX003 – Replacement value invalid or out of bounds
+HEX002 – Replacement value invalid or out of bounds
 
-HEX004 – Winsorization produced invalid results
+HEX003 – Winsorization produced invalid results
 
-HEX005 – Attempted to replace outliers in non-numeric columns
+HEX004 – Attempted to replace outliers in non-numeric columns
 
-HEX006 – No outliers found for handling, but handling was forced
+HEX005 – No outliers found for handling, but handling was forced
 
 ✔ These are never detection failures.
