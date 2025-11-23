@@ -6,56 +6,56 @@ from error_codes import ErrorCodeRegistry
 
 ErrorCodeRegistry.register(
     "ICE000",
-    "[{detector}] - {error_code}\n\n"
+    "[{method}] - {error_code}\n\n"
     "Empty list of columns.\n\n"
     "Suggestion: {suggestion}"
 )
 
 ErrorCodeRegistry.register(
     "ICE001",
-    "[{detector}] - {error_code}\n\n"
+    "[{method}] - {error_code}\n\n"
     "The following columns are missing:\n{missing}\n\n"
     "Suggestion: {suggestion}"
 )
 
 ErrorCodeRegistry.register(
     "ICE002",
-    "[{detector}] - {error_code}\n\n"
+    "[{method}] - {error_code}\n\n"
     "No numeric columns found for detection\n\n"
     "Suggestion: {suggestion}"
 )
 
 ErrorCodeRegistry.register(
     "ICE003",
-    "[{detector}] - {error_code}\n\n"
+    "[{method}] - {error_code}\n\n"
     "The following columns are invalid or non-numeric:\n{invalid}\n\n"\
     "Suggestion: {suggestion}"
 )
 
 ErrorCodeRegistry.register(
     "ICE004",
-    "[{detector}] - {error_code}\n\n"\
+    "[{method}] - {error_code}\n\n"\
     "The following columns are invalid and missing.\nInvalid: {invalid}\nMissing: {missing}\n\n"\
     "Suggestion: {suggestion}"
 )
 
 ErrorCodeRegistry.register(
     "ICE005",
-    "[{detector}] - {error_code}\n\n"\
+    "[{method}] - {error_code}\n\n"\
     "The following columns are duplicated:\n{duplicated}\n\n"
     "Suggestion: {suggestion}"
 )
 
 ErrorCodeRegistry.register(
     "ICE006",
-    "[{detector}] - {error_code}\n\n"
+    "[{method}] - {error_code}\n\n"
     "The following columns contains NaN or an empty column:\n{nan_cols}\n\n"
     "Suggestion: {suggestion}"
 )
 
 ErrorCodeRegistry.register(
     "ICE007",
-    "[{detector}] - {error_code}\n\n"
+    "[{method}] - {error_code}\n\n"
     "The DataFrame is empty\n\n"
     "Suggestion: {suggestion}"
 )
@@ -68,7 +68,7 @@ class InvalidColumnException(OutliPyException):
     or if there are no valid numeric columns for detection/handling.
     """
     def __init__(self, *,
-                 detector: str,
+                 method: str,
                  error_code: Optional[str] = None,
                  invalid: Optional[List[str]] = None, 
                  missing: Optional[List[str]] = None,
@@ -121,7 +121,7 @@ class InvalidColumnException(OutliPyException):
         # Pass it back to the base.
         super().__init__(
             error_code = code,
-            method = detector,              # both the detector and handler use the same validation for columns, so method is appropriate
-            suggestion = suggestion,        # and we use detector so that it stays specific to here.
+            method = method,
+            suggestion = suggestion,
             context = context_data
         )
