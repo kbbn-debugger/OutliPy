@@ -2,12 +2,16 @@ from base import OutliPyException
 from typing import Optional, List
 from exceptions.error_code_registry import ErrorCodeRegistry
 
+# HEX000 - Forced handling without outliers.
+
 ErrorCodeRegistry.register(
     "HEX000",
     "[{method}] - {error_code}\n\n"
     "No outliers found for handling, but handling was forced\n\n"
     "Suggestion: {suggestion}"
 )
+
+# HEX001 - Handling method is unknown, invalid, unavailable, or not supported.
 
 ErrorCodeRegistry.register(
     "HEX001",
@@ -17,12 +21,16 @@ ErrorCodeRegistry.register(
     "Suggestion: {suggestion}"
 )
 
+# HEX002 - Invalid replacement value.
+
 ErrorCodeRegistry.register(
     "HEX002",
     "[{method}] - {error_code}\n\n"
     "Replacement value {fill_value} is invalid or out of bounds.'n'n"
     "Suggestion: {suggestion}"
 )
+
+# HEX003 - Invalid Winsorization results.
 
 ErrorCodeRegistry.register(
     "HEX003",

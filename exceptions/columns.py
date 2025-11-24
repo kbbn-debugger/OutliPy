@@ -2,7 +2,8 @@ from base import OutliPyException
 from typing import Optional, List
 from exceptions.error_code_registry import ErrorCodeRegistry
 
-# Registered Error Codes
+
+# ICE000 - Empty list of columns.
 
 ErrorCodeRegistry.register(
     "ICE000",
@@ -11,12 +12,16 @@ ErrorCodeRegistry.register(
     "Suggestion: {suggestion}"
 )
 
+# ICE001 - Missing columns.
+
 ErrorCodeRegistry.register(
     "ICE001",
     "[{method}] - {error_code}\n\n"
     "The following columns are missing:\n{missing}\n\n"
     "Suggestion: {suggestion}"
 )
+
+# ICE002 - No numeric columns for detection.
 
 ErrorCodeRegistry.register(
     "ICE002",
@@ -25,12 +30,17 @@ ErrorCodeRegistry.register(
     "Suggestion: {suggestion}"
 )
 
+
+# ICE003 - Invalid or non-numeric columns.
+
 ErrorCodeRegistry.register(
     "ICE003",
     "[{method}] - {error_code}\n\n"
     "The following columns are invalid or non-numeric:\n{invalid}\n\n"\
     "Suggestion: {suggestion}"
 )
+
+# ICE004 - Invalid and missing columns.
 
 ErrorCodeRegistry.register(
     "ICE004",
@@ -39,6 +49,8 @@ ErrorCodeRegistry.register(
     "Suggestion: {suggestion}"
 )
 
+# ICE005 - Duplicated columns
+
 ErrorCodeRegistry.register(
     "ICE005",
     "[{method}] - {error_code}\n\n"\
@@ -46,12 +58,16 @@ ErrorCodeRegistry.register(
     "Suggestion: {suggestion}"
 )
 
+# ICE006 - Column contains NaN
+
 ErrorCodeRegistry.register(
     "ICE006",
     "[{method}] - {error_code}\n\n"
     "The following columns contains NaN or an empty column:\n{nan_cols}\n\n"
     "Suggestion: {suggestion}"
 )
+
+# ICE007 - Empty DataFrame.
 
 ErrorCodeRegistry.register(
     "ICE007",
