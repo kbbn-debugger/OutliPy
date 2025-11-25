@@ -3,10 +3,10 @@ from typing import Optional, List, Union
 from error_code_registry import ErrorCodeRegistry
 
 
-# CON000 – Missing required configuration parameter
+# CON001 – Missing required configuration parameter
 
 ErrorCodeRegistry.register(
-    "CON000",
+    "CON001",
     "[{method}] - {error_code}\n\n"
     "Missing required configuration parameter - {parameter}\n\n"
     "Suggestion: {suggestion}"
@@ -15,7 +15,7 @@ ErrorCodeRegistry.register(
 # CON002 – Invalid parameter value (e.g., threshold ≤ 0)
 
 ErrorCodeRegistry.register(
-    "CON001",
+    "CON002",
     "[{method}] - {error_code}\n\n"
     "Invalid parameter value: {parameter_context}\n\n"
     "Suggestion: {suggestion}"
@@ -35,7 +35,7 @@ ErrorCodeRegistry.register(
 ErrorCodeRegistry.register(
     "CON004",
     "[{method}] - {error_code}\n\n"
-    "Inconsistent parameter type passed on {parameter}"
+    "Inconsistent parameter type passed on {parameter}\n\n"
     "Suggestion: {suggestion}"
 )
 
@@ -59,6 +59,7 @@ class ConfigurationException(OutliPyException):
             error_code: str,
             method: str,
             parameter: Optional[Union[str, List[str]]] = None,
+            parameter_context: Optional[Union[str, List[str]]] = None,
             typed_method: Optional[str] = None,
             suggestion: Optional[str] = None
     ):
@@ -66,11 +67,12 @@ class ConfigurationException(OutliPyException):
         context_data = {
             "parameter": parameter,
             "typed_method": typed_method,
+            "parameter_context": parameter_context
         }
         
         super().__init__(
             error_code = error_code,
             method = method,
             context = context_data,
-            suggestion = suggestion
+            suggestion = suggestion or "Please check your parameters or DataFrame."
         )

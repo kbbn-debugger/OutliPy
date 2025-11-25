@@ -36,7 +36,7 @@ ErrorCodeRegistry.register(
 ErrorCodeRegistry.register(
     "DET004",
     "[{method}] - {error_code}\n\n"
-    "Zero Inter-Quartile Range - IQR detector cannot compute bounds."
+    "Zero Inter-Quartile Range - IQR detector cannot compute bounds.\n\n"
     "Suggestion: {suggestion}"
 )
 
@@ -45,7 +45,7 @@ ErrorCodeRegistry.register(
 ErrorCodeRegistry.register(
     "DET005",
     "[{method}] - {error_code}\n\n"
-    "Zero Modified Absolute Deviation - Modified Z-score fails"
+    "Zero Modified Absolute Deviation - Modified Z-score fails.\n\n"
     "Suggestion: {suggestion}"
 )
 
@@ -127,7 +127,7 @@ ErrorCodeRegistry.register(
 ErrorCodeRegistry.register(
     "MVT005",
     "[{method}] - {error_code}\n\n"
-    "Corrupted matrix."
+    "Corrupted matrix.\n\n"
     "Suggestion: {suggestion}"
 )
 
@@ -145,14 +145,14 @@ class DetectionException(OutliPyException):
     ):
         
         context_data = {
-            "specific_message": specific_message
+            "specific_message": specific_message or ""
         }
 
         super().__init__(
             error_code = error_code,
             method = method,
             context = context_data,
-            suggestion = suggestion
+            suggestion = suggestion or "Please check your DataFrame."
         )
 
 class MultivariateException(OutliPyException): 
@@ -175,5 +175,5 @@ class MultivariateException(OutliPyException):
         super().__init__(
             error_code = error_code,
             method = method,
-            suggestion = suggestion
+            suggestion = suggestion or "Please check your DataFrame"
         )
