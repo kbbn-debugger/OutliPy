@@ -1,8 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List
 import pandas as pd
-from ..exceptions import HandlingException
-from utils import validate_input
+from utils import validate_input, validate_strategy
 
 class OutlierHandlerBase(ABC):
     """
@@ -45,17 +44,9 @@ class OutlierHandlerBase(ABC):
         Args:
             allowed_methods (Optional[List[str]]): List of allowed strategy.
         """
+        method_using = self.method
 
-        if allowed_methods is None: 
-            return # no restrictions
-        
-        if self.method not in allowed_methods:
-            raise HandlingException(
-                error_code = "HEX000",
-                method = self.method,
-                typed_method = self.method,
-                allowed_methods = allowed_methods
-            )
+        validate_strategy(allowed_methods, method_using)
         
         self._validated = True
 

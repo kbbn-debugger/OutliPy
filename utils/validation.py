@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from typing import Optional, List
-from exceptions import InvalidColumnException
+from exceptions import InvalidColumnException, HandlingException
 
 
 
@@ -91,4 +91,24 @@ def validate_input(df: pd.DataFrame, detector_name: str, columns: Optional[List[
             missing = missing_cols,
             invalid = invalid_cols,
             nan_cols = nan_inf_cols
+        )
+    
+def validate_strategy(allowed_methods: Optional[List[str]], method_using: str):
+    """
+        Validate that the chosen strategy is allowed.
+
+        Args:
+            allowed_methods (Optional[List[str]]): List of allowed strategy.
+            method_using (str): The method currently being used.
+    """
+    
+    if allowed_methods is None: 
+            return # no restrictions
+        
+    if method_using not in allowed_methods:
+        raise HandlingException(
+            error_code = "HEX000",
+            method = method_using,
+            typed_method = method_using,
+            allowed_methods = allowed_methods
         )
