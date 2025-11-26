@@ -3,6 +3,10 @@ from typing import Optional, List, Union
 from error_code_registry import ErrorCodeRegistry
 
 
+# ----------------------------------------------------------------
+#                Configuration Exception Error Codes
+# ----------------------------------------------------------------
+
 # CON001 – Missing required configuration parameter
 
 ErrorCodeRegistry.register(
@@ -48,6 +52,12 @@ ErrorCodeRegistry.register(
     "Suggestion: {suggestion}"
 )
 
+
+
+
+# ----------------------------------------------------------------
+#                    Configuration Exception
+# ----------------------------------------------------------------
 
 class ConfigurationException(OutliPyException):
     """

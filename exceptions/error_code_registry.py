@@ -1,6 +1,9 @@
 from typing import Optional
 
 class ErrorCodeRegistry:
+    """
+    Register error codes.
+    """
     _registry = {}
 
     @classmethod

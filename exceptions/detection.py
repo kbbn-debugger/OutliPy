@@ -1,7 +1,11 @@
 from base import OutliPyException
-from typing import Optional, List
+from typing import Optional
 from error_code_registry import ErrorCodeRegistry
 
+
+# ---------------------------------------------------------------
+#               Detection Exceptions Error Codes
+# ---------------------------------------------------------------
 
 # DET001 - No data left after preprocessing.
 
@@ -85,7 +89,10 @@ ErrorCodeRegistry.register(
     "Suggestion: {suggestion}"
 )
 
-# Multivariate Exceptions
+# ---------------------------------------------------------------
+#               Multivariate Exceptions Error Codes
+# ---------------------------------------------------------------
+
 # MVT001 - Singular covariance matrix.
 
 ErrorCodeRegistry.register(
@@ -131,6 +138,13 @@ ErrorCodeRegistry.register(
     "Suggestion: {suggestion}"
 )
 
+
+# ----------------------------------------------------------------
+#                        Detection Exception 
+# ----------------------------------------------------------------
+
+
+
 class DetectionException(OutliPyException):
     """
     Raised when outlier detection fails due to computation errors.
@@ -154,6 +168,13 @@ class DetectionException(OutliPyException):
             context = context_data,
             suggestion = suggestion or "Please check your DataFrame."
         )
+
+
+
+
+# ----------------------------------------------------------------
+#                       Multivariate Exception
+# ----------------------------------------------------------------
 
 class MultivariateException(OutliPyException): 
     """

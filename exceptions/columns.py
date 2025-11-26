@@ -3,6 +3,12 @@ from typing import Optional, List
 from exceptions.error_code_registry import ErrorCodeRegistry
 
 
+
+
+# ----------------------------------------------------------------
+#                Invalid Column Exception Error Codes
+# ----------------------------------------------------------------
+
 # ICE000 - Empty list of columns.
 
 ErrorCodeRegistry.register(
@@ -75,8 +81,13 @@ ErrorCodeRegistry.register(
     "The DataFrame is empty\n\n"
     "Suggestion: {suggestion}"
 )
-# ---------------------------------------------------------- #
 
+
+
+
+# ----------------------------------------------------------------
+#                     Invalid Column Exception
+# ----------------------------------------------------------------
 
 class InvalidColumnException(OutliPyException):
     """

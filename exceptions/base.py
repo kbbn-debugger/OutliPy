@@ -5,6 +5,12 @@ from typing import Optional, Dict, Any
 class OutliPyException(Exception, ABC):
     """
     Base exception. It creates the message but doesn't care about specific parameters.
+
+    Args:
+        error_code (str): The error code raised.
+        method (str): The method currently being used.
+        context (Optional[Dict[str, Any]]): The context of the error.
+        suggestion (Optional[str]): Custom suggestion.
     """
     default_error_code = "OE000"
 

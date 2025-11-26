@@ -4,6 +4,9 @@ from typing import Optional, List
 from exceptions import InvalidColumnException, HandlingException
 
 
+# -----------------------------------------------------------
+#                        validate input
+# -----------------------------------------------------------
 
 def validate_input(df: pd.DataFrame, detector_name: str, columns: Optional[List[str]]):
     """
@@ -92,7 +95,14 @@ def validate_input(df: pd.DataFrame, detector_name: str, columns: Optional[List[
             invalid = invalid_cols,
             nan_cols = nan_inf_cols
         )
-    
+
+
+
+
+# -----------------------------------------------------------
+#                       validate strategy 
+# -----------------------------------------------------------
+
 def validate_strategy(allowed_methods: Optional[List[str]], method_using: str):
     """
         Validate that the chosen strategy is allowed.

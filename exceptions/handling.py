@@ -2,6 +2,11 @@ from base import OutliPyException
 from typing import Optional, List
 from exceptions.error_code_registry import ErrorCodeRegistry
 
+
+# ----------------------------------------------------------------
+#                  Handling Exception Error Codes
+# ----------------------------------------------------------------
+
 # HEX000 - Forced handling without outliers.
 
 ErrorCodeRegistry.register(
@@ -38,6 +43,13 @@ ErrorCodeRegistry.register(
     "Winsorization produced invalid results"
     "Suggestion: {suggestion}"
 )
+
+
+
+
+# ----------------------------------------------------------------
+#                         Handling Exception
+# ----------------------------------------------------------------
 
 class HandlingException(OutliPyException):
     """
