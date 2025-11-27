@@ -1,7 +1,10 @@
 import pandas as pd
 from pandas.api.extensions import register_dataframe_accessor
+
 from typing import Optional, List
-from ..detection.iqr import IQRDetector
+
+from ..detection import IQRDetector
+from ..detection import ZScoreDetector
 
 @register_dataframe_accessor("Outli")
 class OutlierAccessor:
@@ -21,7 +24,8 @@ class OutlierAccessor:
         """
         Detect outliers using the IQR method.
         
-        :param threshold: The IQR multiplier used to determine outlier boundaries.
+        :param threshold: The number of standard deviations from the mean used as the cutoff point. Any data point whose absolute Z-score exceeds this value is considered an outlier. (Default is 3.0).
+        :type threshold: float
         :type threshold: float
         :param columns: Columns to evaluate. If None, detector should auto-detect numeric columns.
         :return: DataFrame of booleans: True = outlier, False = normal.
@@ -32,4 +36,23 @@ class OutlierAccessor:
         mask = method.detect(df = self._df)
         return mask
 
+    def zscore(
+            self, 
+            *, 
+            threshold: float = 3.0, 
+            columns: Optional[List[str]] = None
+    ) -> pd.DataFrame:
+        """
+        Detect outliers using the Zscore method.
+        
+        :param threshold: The value used to determine outlier boundaries.
+        :type threshold: float
+        :param columns: Columns to evaluate. If None, detector should auto-detect numeric columns.
+        :return: DataFrame of booleans: True = outlier, False = normal.
+        :rtype: DataFrame
+        """
+
+        method = ZScoreDetector(threshold = threshold, columns = columns)
+        mask = method.detect(df = self._df)
+        return mask
 
