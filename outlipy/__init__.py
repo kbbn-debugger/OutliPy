@@ -1,4 +1,4 @@
-from accessors import OutlierAccessor
+from .accessors import OutlierAccessor
 
 
 __all__ = [

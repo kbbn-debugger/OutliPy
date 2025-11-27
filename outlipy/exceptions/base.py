@@ -1,5 +1,5 @@
 from abc import ABC
-from exceptions.error_code_registry import ErrorCodeRegistry
+from .error_code_registry import ErrorCodeRegistry
 from typing import Optional, Dict, Any
 
 class OutliPyException(Exception, ABC):

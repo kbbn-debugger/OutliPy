@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from typing import Optional, List
 from .base import OutlierHandlerBase
-from ..exceptions import HandlingException
+from ..exceptions.handling import HandlingException
 
 class OutlierHandler(OutlierHandlerBase):
     """

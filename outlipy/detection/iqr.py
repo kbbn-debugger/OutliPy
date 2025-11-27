@@ -1,7 +1,8 @@
 import pandas as pd
-from exceptions import DetectionException, ConfigurationException
+from ..exceptions.configuration import ConfigurationException
+from ..exceptions.detection import DetectionException
 from typing import Optional, List
-from base import OutlierDetectorBase
+from .base import OutlierDetectorBase
 
 class IQRDetector(OutlierDetectorBase):
     """

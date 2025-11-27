@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List
 import pandas as pd
-from utils import validate_input, validate_strategy
+from ..utils.validation import validate_input, validate_strategy
 
 class OutlierHandlerBase(ABC):
     """

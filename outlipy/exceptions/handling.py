@@ -1,6 +1,6 @@
-from base import OutliPyException
+from .base import OutliPyException
 from typing import Optional, List
-from exceptions.error_code_registry import ErrorCodeRegistry
+from .error_code_registry import ErrorCodeRegistry
 
 
 # ----------------------------------------------------------------

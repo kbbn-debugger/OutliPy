@@ -1,5 +1,5 @@
-from validation import validate_input, validate_strategy
-from auto_selection import select_numeric_columns
+from .validation import validate_input, validate_strategy
+from .auto_selection import select_numeric_columns
 
 
 

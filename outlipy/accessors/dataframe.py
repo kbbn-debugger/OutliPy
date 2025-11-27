@@ -1,7 +1,7 @@
 import pandas as pd
 from pandas.api.extensions import register_dataframe_accessor
 from typing import Optional, List
-from detection import IQRDetector
+from ..detection.iqr import IQRDetector
 
 @register_dataframe_accessor("Outli")
 class OutlierAccessor:
