@@ -2,7 +2,6 @@ import pandas as pd
 from exceptions import DetectionException, ConfigurationException
 from typing import Optional, List
 from base import OutlierDetectorBase
-from utils import select_numeric_columns
 
 class IQRDetector(OutlierDetectorBase):
     """
@@ -38,7 +37,7 @@ class IQRDetector(OutlierDetectorBase):
         :type df: pd.DataFrame
         """
 
-        numeric_df = select_numeric_columns(df, self.columns)
+        numeric_df = df[self.columns]
 
         self._scores = {}  # reset scores
 
@@ -76,17 +75,21 @@ class IQRDetector(OutlierDetectorBase):
         :rtype: DataFrame
         """
 
+        # Auto fit if it was not fitted yet.
         if not self._fitted:
             self.fit(df)
 
-        numeric_df = select_numeric_columns(df)
+        # if self.columns is unexpectedly become None.
 
-        outlier_mask = pd.DataFrame(False, index = df.index, columns = numeric_df.columns)
+        if self.columns is None:
+            raise RuntimeError("Detector was fitted, but self.columns is unexpectedly None.")
 
-        for col in numeric_df.columns:
+        outlier_mask = pd.DataFrame(False, index = df.index, columns = self.columns)
+
+        for col in self.columns:
             bounds = self._scores[col]
             lower, upper = bounds["lower"], bounds["upper"]
-            series = numeric_df[col]
+            series = df[col]
 
             outliers = (series < lower) | (series > upper)
             outlier_mask[col] = outliers

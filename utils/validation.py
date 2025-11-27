@@ -8,7 +8,11 @@ from exceptions import InvalidColumnException, HandlingException
 #                        validate input
 # -----------------------------------------------------------
 
-def validate_input(df: pd.DataFrame, detector_name: str, columns: Optional[List[str]]):
+def validate_input(
+        df: pd.DataFrame, 
+        detector_name: str, 
+        columns: Optional[List[str]]
+) -> List[str]:
     """
     Check if dataframe is valid and columns exist.
     
@@ -52,6 +56,8 @@ def validate_input(df: pd.DataFrame, detector_name: str, columns: Optional[List[
                 no_numeric = True                 # Flags the no_numeric into True, raises ICE002
             )
     else:
+        cols_to_check = columns
+
         # Flags if user input an empty list. Default is None
         if not cols_to_check:
             raise InvalidColumnException(
@@ -95,6 +101,8 @@ def validate_input(df: pd.DataFrame, detector_name: str, columns: Optional[List[
             invalid = invalid_cols,
             nan_cols = nan_inf_cols
         )
+    
+    return cols_to_check
 
 
 

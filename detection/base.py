@@ -36,7 +36,9 @@ class OutlierDetectorBase(ABC):
         detector_name = self.__class__.__name__
         columns = self.columns
 
-        validate_input(df, detector_name, columns)
+        validated_cols = validate_input(df, detector_name, columns)
+
+        self.columns = validated_cols
 
 
     def fit(self, df: pd.DataFrame):
