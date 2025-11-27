@@ -3,8 +3,7 @@ from pandas.api.extensions import register_dataframe_accessor
 
 from typing import Optional, List
 
-from ..detection import IQRDetector
-from ..detection import ZScoreDetector
+from ..detection import IQRDetector, ZScoreDetector
 
 @register_dataframe_accessor("Outli")
 class OutlierAccessor:
