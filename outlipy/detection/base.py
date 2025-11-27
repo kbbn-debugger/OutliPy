@@ -1,7 +1,9 @@
+import pandas as pd
+
 from abc import ABC, abstractmethod
 from typing import Optional, List
-import pandas as pd
-from ..utils.validation import validate_input
+
+from ..utils import validate_input
 
 class OutlierDetectorBase(ABC):
     """

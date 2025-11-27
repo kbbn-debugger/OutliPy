@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 from typing import Optional, List
-from ..exceptions.columns import InvalidColumnException
-from ..exceptions.handling import HandlingException
+from ..exceptions import InvalidColumnException, HandlingException
+
 
 
 # -----------------------------------------------------------

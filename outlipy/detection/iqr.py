@@ -1,8 +1,10 @@
 import pandas as pd
-from ..exceptions.configuration import ConfigurationException
-from ..exceptions.detection import DetectionException
-from typing import Optional, List
+
 from .base import OutlierDetectorBase
+
+from ..exceptions import ConfigurationException, DetectionException
+
+from typing import Optional, List
 
 class IQRDetector(OutlierDetectorBase):
     """
@@ -48,7 +50,7 @@ class IQRDetector(OutlierDetectorBase):
             iqr = q3 - q1
 
             if iqr == 0:
-                # Rase DET004 Zero Variance - cannot compute IQR-based outliers
+                # Raise DET004 Zero Variance - cannot compute IQR-based outliers
                 raise DetectionException(
                     error_code = "DET004",
                     method = self.__class__.__name__,
