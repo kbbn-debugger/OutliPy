@@ -8,7 +8,10 @@ from ..exceptions import ConfigurationException, DetectionException
 
 class MADDetector(OutlierDetectorBase):
     """
-    
+    Modified Z-score (Median Absolute Deviation or MAD) based outlier detector.
+
+    A data point is considered an outlier if its absolute Modified Z-score 
+    is greater than the defined threshold (typically 3.5).
     """
     def __init__(
             self,
