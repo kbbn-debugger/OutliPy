@@ -3,7 +3,7 @@ from pandas.api.extensions import register_dataframe_accessor
 
 from typing import Optional, List
 
-from ..detection import IQRDetector, ZScoreDetector
+from ..detection import IQRDetector, ZScoreDetector, MADDetector
 
 @register_dataframe_accessor("Outli")
 class OutlierAccessor:
@@ -54,4 +54,17 @@ class OutlierAccessor:
         method = ZScoreDetector(threshold = threshold, columns = columns)
         mask = method.detect(df = self._df)
         return mask
+    
+    def mad(
+            self,
+            *,
+            threshold: float = 3.0,
+            columns: Optional[List[str]] = None
+    ) -> pd.DataFrame:
+        """
+        
+        """
 
+        method = MADDetector(threshold = threshold, columns = columns)
+        mask = method.detect(df = self._df)
+        return mask
