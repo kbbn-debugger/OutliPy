@@ -1,9 +1,9 @@
 import pandas as pd
 from pandas.api.extensions import register_dataframe_accessor
 
-from typing import Optional, List
+from typing import Optional, List, Union, Tuple
 
-from ..detection import IQRDetector, ZScoreDetector, MADDetector
+from ..detection import IQRDetector, ZScoreDetector, MADDetector, Percentile
 
 @register_dataframe_accessor("Outli")
 class OutlierAccessor:
@@ -66,5 +66,16 @@ class OutlierAccessor:
         """
 
         method = MADDetector(threshold = threshold, columns = columns)
+        mask = method.detect(df = self._df)
+        return mask
+
+    def percentile(
+            self,
+            *,
+            threshold: Union[Tuple[float, float], float] = (0.05, 0.95),
+            columns: Optional[List[str]] = None
+    ) -> pd.DataFrame:
+        
+        method = Percentile(threshold = threshold, columns = columns)
         mask = method.detect(df = self._df)
         return mask

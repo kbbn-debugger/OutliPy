@@ -6,7 +6,7 @@ from typing import Optional, List, Tuple, Union
 from .base import OutlierDetectorBase
 from ..exceptions import ConfigurationException, DetectionException
 
-class MADDetector(OutlierDetectorBase):
+class Percentile(OutlierDetectorBase):
     """
     Percentile-based outlier detector.
 
