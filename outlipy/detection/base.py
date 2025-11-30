@@ -1,7 +1,7 @@
 import pandas as pd
 
 from abc import ABC, abstractmethod
-from typing import Optional, List
+from typing import Optional, List, Union, Tuple
 
 from ..utils import validate_input
 
@@ -14,7 +14,7 @@ class OutlierDetectorBase(ABC):
         columns (Optional[List[str]]): Columns to analyze. If None, all numeric columns are used.
     """
 
-    def __init__(self, threshold: float = 3.0, columns: Optional[List[str]] = None):
+    def __init__(self, threshold: Union[float, Tuple[float, float]] = 3.0, columns: Optional[List[str]] = None):
         self.threshold = threshold
         self.columns = columns
         self._fitted = False
