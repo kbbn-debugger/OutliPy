@@ -7,10 +7,13 @@ name = "outlipy"
 version = "0.1.0"
 description = "A Python library for outlier detection and handling."
 authors = [
-    { name = "Your Name", email = "your@email.com" }
+    { name = "Kevin Lloyd Baul", email = "baul.kevinlloyd@gmail.com" },
+    { name = "Phoebe Aganan", email = "aganan.phoebe@ustp.edu.ph"}
 ]
 readme = "README.md"
 requires-python = ">=3.8"
+license = "BSD-3-Clause"
+keywords = ["outlier", "outlier handling", "outlier detection", "outlier detector"]
 
 # Automatic package discovery
 dependencies = [
