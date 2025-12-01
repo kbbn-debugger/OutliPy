@@ -51,7 +51,7 @@ class OutlierHandlerBase(ABC):
         self._validated = True
 
     @abstractmethod
-    def apply(self, df: pd.DataFrame) -> pd.DataFrame:
+    def apply(self, df: pd.DataFrame, outlier_mask: Optional[pd.DataFrame] = None) -> pd.DataFrame:
         """
         Apply outlier handling to the DataFrame.
 
