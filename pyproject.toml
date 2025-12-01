@@ -12,8 +12,15 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.8"
-license = "BSD-3-Clause"
-keywords = ["outlier", "outlier handling", "outlier detection", "outlier detector"]
+license = { text = "BSD-3-Clause" }
+keywords = [
+    "outlier", 
+    "outlier handling", 
+    "outlier detection", 
+    "outlier detector",
+    "data cleaning",
+    "statistics"
+    ]
 
 # Automatic package discovery
 dependencies = [
@@ -22,4 +29,8 @@ dependencies = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["."]
+where = ["src"]
+include = ["outlipy*"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
