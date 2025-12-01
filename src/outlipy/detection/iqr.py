@@ -44,6 +44,14 @@ class IQRDetector(OutlierDetectorBase):
 
         self._scores = {}  # reset scores
 
+        if not isinstance(self.threshold, float):
+            raise ConfigurationException(
+                error_code="CON002", 
+                method=self.__class__.__name__,
+                parameter="Threshold is not a float (check base class type hint).",
+                suggestion="Ensure the threshold parameter is a single float value (e.g., 1.5)."
+                )
+
         for col in numeric_df.columns:
             q1 = numeric_df[col].quantile(0.25)
             q3 = numeric_df[col].quantile(0.75)
