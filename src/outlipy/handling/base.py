@@ -35,7 +35,7 @@ class OutlierHandlerBase(ABC):
         detector_name = self.__class__.__name__
         columns = self.columns
 
-        validate_input(df, detector_name, columns)
+        self.columns = validate_input(df, detector_name, columns)
 
     def _validate_strategy(self, allowed_methods: Optional[List[str]] = None):
         """
