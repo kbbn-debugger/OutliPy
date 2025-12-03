@@ -92,8 +92,8 @@ class OutlierAccessor:
             columns: Optional[List[str]] = None
     ) -> pd.DataFrame:
         
-        method = MeanHandler(columns = columns)
-        cleaned = method.apply(self._df, outlier_mask = outlier_mask)
+        handler = MeanHandler(columns = columns)
+        cleaned = handler.apply(self._df, outlier_mask = outlier_mask)
         return cleaned
     
     def median(
@@ -103,8 +103,8 @@ class OutlierAccessor:
             columns: Optional[List[str]] = None
     ) -> pd.DataFrame:
         
-        method = MedianHandler(columns = columns)
-        cleaned = method.apply(self._df, outlier_mask = outlier_mask)
+        handler = MedianHandler(columns = columns)
+        cleaned = handler.apply(self._df, outlier_mask = outlier_mask)
         return cleaned
     
     def winsor(
@@ -114,8 +114,8 @@ class OutlierAccessor:
             columns: Optional[List[str]] = None
     ) -> pd.DataFrame:
         
-        method = WinsorizationHandler(limits = limits, columns = columns)
-        cleaned = method.apply(self._df)
+        handler = WinsorizationHandler(limits = limits, columns = columns)
+        cleaned = handler.apply(self._df)
         return cleaned
     
     def remove(
@@ -125,8 +125,8 @@ class OutlierAccessor:
             columns: Optional[List[str]] = None
     ) -> pd.DataFrame:
         
-        method = RemoveHandler(columns = columns)
-        cleaned = method.apply(df = self._df, outlier_mask = outlier_mask)
+        handler = RemoveHandler(columns = columns)
+        cleaned = handler.apply(df = self._df, outlier_mask = outlier_mask)
         return cleaned
     
     def conrep(
