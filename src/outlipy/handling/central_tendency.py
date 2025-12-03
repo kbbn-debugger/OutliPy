@@ -59,6 +59,9 @@ class MeanHandler(OutlierHandlerBase):
                         suggestion = f"Cannot compute mean for column '{col}'. All data points might be non-numeric or flagged as outliers."
                     )
                 
+                if pd.api.types.is_integer_dtype(df_clean[col].dtype) and isinstance(replacement_val, (float, np.floating)):
+                    df_clean[col] = df_clean[col].astype(float)
+                
                 df_clean.loc[outliers, col] = replacement_val
 
         return df_clean
@@ -118,6 +121,9 @@ class MedianHandler(OutlierHandlerBase):
                         method = self.__class__.__name__,
                         suggestion = f"Cannot compute mean for column '{col}'. All data points might be non-numeric or flagged as outliers."
                     )
+                
+                if pd.api.types.is_integer_dtype(df_clean[col].dtype) and isinstance(replacement_val, (float, np.floating)):
+                    df_clean[col] = df_clean[col].astype(float)
                 
                 df_clean.loc[outliers, col] = replacement_val
 
