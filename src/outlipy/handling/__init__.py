@@ -1,5 +1,5 @@
 from .base import OutlierHandlerBase
-from .mean_median import MeanHandler, MedianHandler
+from .central_tendency import MeanHandler, MedianHandler
 from .winsorization import WinsorizationHandler
 from .remove import RemoveHandler
 
