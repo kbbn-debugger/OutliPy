@@ -7,7 +7,7 @@ from .error_code_registry import ErrorCodeRegistry
 #                  Handling Exception Error Codes
 # ----------------------------------------------------------------
 
-# HEX000 - Forced handling without outliers.
+# HEX000 - Forced handling without outliers. (To Do: to be removed)
 
 ErrorCodeRegistry.register(
     "HEX000",
@@ -31,7 +31,7 @@ ErrorCodeRegistry.register(
 ErrorCodeRegistry.register(
     "HEX002",
     "[{method}] - {error_code}\n\n"
-    "Replacement value {fill_value} is invalid or out of bounds.'n'n"
+    "Replacement value {fill_value} is invalid or out of bounds.\n\n"
     "Suggestion: {suggestion}"
 )
 
@@ -40,10 +40,19 @@ ErrorCodeRegistry.register(
 ErrorCodeRegistry.register(
     "HEX003",
     "[{method}] - {error_code}\n\n"
-    "Winsorization produced invalid results"
+    "Winsorization produced invalid results\n\n"
     "Suggestion: {suggestion}"
 )
 
+# HEX004 - Global NaN.
+
+ErrorCodeRegistry.register(
+    "HEX004",
+    "[{method}] - {error_code}\n\n"
+    "Cannot compute a valid global fallback statistic for column '{col}'.\n\n"
+    "Suggestion: {suggestion}"
+
+)
 
 
 
@@ -63,7 +72,8 @@ class HandlingException(OutliPyException):
                  typed_method: Optional[str] = None,
                  allowed_methods: Optional[List[str]] = None,
                  fill_value: Optional[float] = None,
-                 suggestion: Optional[str] = None
+                 suggestion: Optional[str] = None,
+                 col: Optional[str] = None
                  ):
         
         allowed_methods = allowed_methods or []
@@ -72,6 +82,7 @@ class HandlingException(OutliPyException):
             "typed_method": typed_method,
             "allowed_methods": allowed_methods,
             "fill_value": fill_value,
+            "col": col
         }
         
         super().__init__(
