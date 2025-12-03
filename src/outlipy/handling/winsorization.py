@@ -7,14 +7,12 @@ from ..exceptions import HandlingException, ConfigurationException
 
 class WinsorizationHandler(OutlierHandlerBase):
     
-    METHOD_NAME = "winsorization"
-    
     def __init__(
         self, 
         limits: Tuple[float, float] = (0.05, 0.95), 
         columns: Optional[List[str]] = None
     ):
-        super().__init__(method=self.METHOD_NAME, columns=columns)
+        super().__init__(method=self.__class__.__name__, columns=columns)
         
         # Validation for limits
         if not (isinstance(limits, tuple) and len(limits) == 2 and all(isinstance(i, (int, float)) for i in limits)):
@@ -40,6 +38,8 @@ class WinsorizationHandler(OutlierHandlerBase):
     def apply(self, df: pd.DataFrame, outlier_mask: Optional[pd.DataFrame] = None) -> pd.DataFrame:
         """Caps values at defined percentiles."""
         
+        self._validate_input(df = df)
+
         # No mask needed, but we check if columns are set
         if self.columns is None:
             return df.copy() # Return copy if no columns specified
@@ -48,8 +48,6 @@ class WinsorizationHandler(OutlierHandlerBase):
         lower_q, upper_q = self.limits
 
         for col in self.columns:
-            if col not in df_clean.columns or not pd.api.types.is_numeric_dtype(df_clean[col]):
-                continue # Skip non-existent or non-numeric columns
                 
             lower_limit = df_clean[col].quantile(lower_q)
             upper_limit = df_clean[col].quantile(upper_q)
