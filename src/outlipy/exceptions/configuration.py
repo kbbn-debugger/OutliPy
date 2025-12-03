@@ -21,7 +21,7 @@ ErrorCodeRegistry.register(
 ErrorCodeRegistry.register(
     "CON002",
     "[{method}] - {error_code}\n\n"
-    "Invalid parameter value: {parameter_context}\n\n"
+    "Invalid parameter value in {parameter_context}\n\n"
     "Suggestion: {suggestion}"
 )
 
@@ -30,7 +30,7 @@ ErrorCodeRegistry.register(
 ErrorCodeRegistry.register(
     "CON003",
     "[{method}] - {error_code}\n\n"
-    "The current {typed_method} is currently not unsupported\n\n"
+    "The current {typed_method} is currently not supported\n\n"
     "Suggestion: {suggestion}"
 )
 

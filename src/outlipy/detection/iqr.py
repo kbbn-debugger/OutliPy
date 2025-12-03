@@ -22,7 +22,7 @@ class IQRDetector(OutlierDetectorBase):
             raise ConfigurationException(
                 error_code = "CON002", 
                 method = self.__class__.__name__,
-                parameter_context = "threshold < 0",
+                parameter_context = "threshold",
                 suggestion = "Please input a value greater than 0."
             )
         
@@ -48,7 +48,7 @@ class IQRDetector(OutlierDetectorBase):
             raise ConfigurationException(
                 error_code="CON002", 
                 method=self.__class__.__name__,
-                parameter="Threshold is not a float (check base class type hint).",
+                parameter_context = "threshold",
                 suggestion="Ensure the threshold parameter is a single float value (e.g., 1.5)."
                 )
 

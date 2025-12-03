@@ -23,7 +23,7 @@ class Percentile(OutlierDetectorBase):
             raise ConfigurationException(
                 error_code = "CON002",
                 method = self.__class__.__name__,
-                parameter_context = "Threshold must be a tuple (lower_percentile, upper_percentile).",
+                parameter_context = "threshold",
                 suggestion = "Example: (0.05, 0.95) for 5th and 95th percentiles."
             )
         lower_q, upper_q = threshold
@@ -31,7 +31,7 @@ class Percentile(OutlierDetectorBase):
             raise ConfigurationException(
                 error_code = "CON002", 
                 method = self.__class__.__name__,
-                parameter_context = "Percentile values must be between 0 and 1, and lower < upper.",
+                parameter_context = "threshold",
                 suggestion = "Ensure 0.0 <= lower_percentile < upper_percentile <= 1.0."
             )
         
@@ -58,7 +58,7 @@ class Percentile(OutlierDetectorBase):
             raise ConfigurationException(
                 error_code = "CON002",
                 method = self.__class__.__name__,
-                parameter_context = "Threshold must be a tuple (lower_percentile, upper_percentile).",
+                parameter_context = "threshold",
                 suggestion = "Example: (0.05, 0.95) for 5th and 95th percentiles."
             )
 
