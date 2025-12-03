@@ -4,8 +4,9 @@ from pandas.api.extensions import register_dataframe_accessor
 from typing import Optional, List, Union, Tuple
 
 from ..detection import IQRDetector, ZScoreDetector, MADDetector, Percentile
+from ..handling import MeanHandler, MedianHandler, WinsorizationHandler, RemoveHandler
 
-@register_dataframe_accessor("Outli")
+@register_dataframe_accessor("outli")
 class OutlierAccessor:
     def __init__(self, pandas_obj):
         self._df = pandas_obj
@@ -79,3 +80,51 @@ class OutlierAccessor:
         method = Percentile(threshold = threshold, columns = columns)
         mask = method.detect(df = self._df)
         return mask
+    
+    # ------------------------------------------------------
+    #                   Handling
+    # ------------------------------------------------------
+
+    def mean(
+            self,
+            *,
+            outlier_mask: pd.DataFrame,
+            columns: Optional[List[str]] = None
+    ) -> pd.DataFrame:
+        
+        method = MeanHandler(columns = columns)
+        cleaned = method.apply(self._df, outlier_mask = outlier_mask)
+        return cleaned
+    
+    def median(
+            self,
+            *,
+            outlier_mask: pd.DataFrame,
+            columns: Optional[List[str]] = None
+    ) -> pd.DataFrame:
+        
+        method = MedianHandler(columns = columns)
+        cleaned = method.apply(self._df, outlier_mask = outlier_mask)
+        return cleaned
+    
+    def winsor(
+            self,
+            *,
+            limits: Tuple[float, float] = (0.05, 0.95),
+            columns: Optional[List[str]] = None
+    ) -> pd.DataFrame:
+        
+        method = WinsorizationHandler(limits = limits, columns = columns)
+        cleaned = method.apply(self._df)
+        return cleaned
+    
+    def remove(
+            self,
+            *,
+            outlier_mask: pd.DataFrame,
+            columns: Optional[List[str]] = None
+    ) -> pd.DataFrame:
+        
+        method = RemoveHandler(columns = columns)
+        cleaned = method.apply(df = self._df, outlier_mask = outlier_mask)
+        return cleaned

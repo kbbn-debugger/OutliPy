@@ -1,5 +1,6 @@
 from .accessors import OutlierAccessor
 from .detection import IQRDetector, ZScoreDetector, MADDetector, Percentile
+from .handling import WinsorizationHandler, MeanHandler, MedianHandler, RemoveHandler
 
 
 __all__ = [
@@ -7,5 +8,9 @@ __all__ = [
     "IQRDetector",
     "ZScoreDetector",
     "MADDetector",
-    "Percentile"
+    "Percentile",
+    "WinsorizationHandler",
+    "MeanHandler",
+    "MedianHandler",
+    "RemoveHandler"
 ]
