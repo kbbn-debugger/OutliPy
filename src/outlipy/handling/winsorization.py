@@ -29,7 +29,7 @@ class WinsorizationHandler(OutlierHandlerBase):
              raise ConfigurationException(
                 error_code="CON002",
                 method=self.__class__.__name__,
-                parameter_context="Winsorization limits must be between 0 and 1, and lower < upper.",
+                parameter_context= "limits",
                 suggestion="Ensure 0.0 <= lower_limit < upper_limit <= 1.0."
             )
 
