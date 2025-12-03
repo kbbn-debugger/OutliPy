@@ -3,6 +3,7 @@ from .central_tendency import MeanHandler, MedianHandler
 from .winsorization import WinsorizationHandler
 from .remove import RemoveHandler
 from .constant_replacement import ConstantHandler
+from .interpolation import InterpolateHandler
 
 
 __all__ = [
@@ -11,5 +12,6 @@ __all__ = [
     "WinsorizationHandler",
     "MedianHandler",
     "RemoveHandler",
-    "ConstantHandler"
+    "ConstantHandler",
+    "InterpolateHandler"
 ]
