@@ -4,7 +4,7 @@ from pandas.api.extensions import register_dataframe_accessor
 from typing import Optional, List, Union, Tuple
 
 from ..detection import IQRDetector, ZScoreDetector, MADDetector, Percentile
-from ..handling import MeanHandler, MedianHandler, WinsorizationHandler, RemoveHandler
+from ..handling import MeanHandler, MedianHandler, WinsorizationHandler, RemoveHandler, ConstantHandler
 
 @register_dataframe_accessor("outli")
 class OutlierAccessor:
@@ -126,5 +126,17 @@ class OutlierAccessor:
     ) -> pd.DataFrame:
         
         method = RemoveHandler(columns = columns)
+        cleaned = method.apply(df = self._df, outlier_mask = outlier_mask)
+        return cleaned
+    
+    def conrep(
+            self,
+            *,
+            fill_value: float,
+            outlier_mask: pd.DataFrame,
+            columns: Optional[List[str]] = None
+    ) -> pd.DataFrame:
+        
+        method = ConstantHandler(fill_value = fill_value, columns = columns)
         cleaned = method.apply(df = self._df, outlier_mask = outlier_mask)
         return cleaned

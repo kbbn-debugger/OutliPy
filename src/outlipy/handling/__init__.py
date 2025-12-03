@@ -2,6 +2,7 @@ from .base import OutlierHandlerBase
 from .central_tendency import MeanHandler, MedianHandler
 from .winsorization import WinsorizationHandler
 from .remove import RemoveHandler
+from .constant_replacement import ConstantHandler
 
 
 __all__ = [
@@ -9,5 +10,6 @@ __all__ = [
     "MeanHandler",
     "WinsorizationHandler",
     "MedianHandler",
-    "RemoveHandler"
+    "RemoveHandler",
+    "ConstantHandler"
 ]
