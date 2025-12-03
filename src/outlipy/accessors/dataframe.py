@@ -4,8 +4,9 @@ from pandas.api.extensions import register_dataframe_accessor
 from typing import Optional, List, Union, Tuple
 
 from ..detection import IQRDetector, ZScoreDetector, MADDetector, Percentile
-from ..handling import MeanHandler, MedianHandler, WinsorizationHandler, RemoveHandler, ConstantHandler, InterpolateHandler
-
+from ..handling import (MeanHandler, MedianHandler, WinsorizationHandler, 
+                        RemoveHandler, ConstantHandler, InterpolateHandler,
+                        GroupedHandler)
 @register_dataframe_accessor("outli")
 class OutlierAccessor:
     def __init__(self, pandas_obj):
@@ -150,5 +151,18 @@ class OutlierAccessor:
     ) -> pd.DataFrame:
         
         handler = InterpolateHandler(method = method, columns = columns)
+        cleaned = handler.apply(df = self._df, outlier_mask = outlier_mask)
+        return cleaned
+    
+    def group(
+            self,
+            *,
+            group_by: List[str],
+            agg_func: str = "median",
+            outlier_mask: pd.DataFrame,
+            columns: Optional[List[str]] = None
+    ) -> pd.DataFrame:
+        
+        handler = GroupedHandler(group_by = group_by, agg_func = agg_func, columns = columns)
         cleaned = handler.apply(df = self._df, outlier_mask = outlier_mask)
         return cleaned

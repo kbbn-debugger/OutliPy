@@ -4,6 +4,7 @@ from .winsorization import WinsorizationHandler
 from .remove import RemoveHandler
 from .constant_replacement import ConstantHandler
 from .interpolation import InterpolateHandler
+from .group_handling import GroupedHandler
 
 
 __all__ = [
@@ -13,5 +14,6 @@ __all__ = [
     "MedianHandler",
     "RemoveHandler",
     "ConstantHandler",
-    "InterpolateHandler"
+    "InterpolateHandler",
+    "GroupedHandler"
 ]
