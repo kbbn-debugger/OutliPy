@@ -69,7 +69,7 @@ class GroupedHandler(OutlierHandlerBase):
                 raise InvalidColumnException(
                     error_code = "ICE001",
                     method = self.__class__.__name__,
-                    missing = list(col),
+                    missing = [col],
                     suggestion = f"Check missing column from the input DataFrame."
                 )
         
