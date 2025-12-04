@@ -27,7 +27,7 @@ class OutlierDetectorBase(ABC):
         self._scores = {}  # Stores computed outlier scores per column
 
     def __repr__(self):
-        return f"{self.__class__.__name__}(threshold={self.threshold}, columns={self.columns})"
+        return f"{self.__class__.__name__}(threshold={self.threshold}, columns={self.columns}, exclude={self.exclude})"
 
     def __str__(self):
         cols = self.columns if self.columns else "All numeric columns"

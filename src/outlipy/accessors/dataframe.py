@@ -3,10 +3,11 @@ from pandas.api.extensions import register_dataframe_accessor
 
 from typing import Optional, List, Union, Tuple
 
-from ..detection import IQRDetector, ZScoreDetector, MADDetector, Percentile
+from ..detection import IQRDetector, ZScoreDetector, MADDetector, PercentileDetector
 from ..handling import (MeanHandler, MedianHandler, WinsorizationHandler, 
                         RemoveHandler, ConstantHandler, InterpolateHandler,
                         GroupedHandler)
+
 @register_dataframe_accessor("outli")
 class OutlierAccessor:
     def __init__(self, pandas_obj):
@@ -62,7 +63,7 @@ class OutlierAccessor:
     def mad(
             self,
             *,
-            threshold: float = 3.0,
+            threshold: float = 3.5,
             columns: Optional[List[str]] = None,
             exclude: Optional[List[str]] = None
     ) -> pd.DataFrame:
@@ -82,7 +83,7 @@ class OutlierAccessor:
             exclude: Optional[List[str]] = None
     ) -> pd.DataFrame:
         
-        method = Percentile(threshold = threshold, columns = columns, exclude = exclude)
+        method = PercentileDetector(threshold = threshold, columns = columns, exclude = exclude)
         mask = method.detect(df = self._df)
         return mask
     
