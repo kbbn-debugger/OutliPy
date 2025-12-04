@@ -1,5 +1,5 @@
 from .accessors import OutlierAccessor
-from .detection import IQRDetector, ZScoreDetector, MADDetector, Percentile
+from .detection import IQRDetector, ZScoreDetector, MADDetector, PercentileDetector
 from .handling import (WinsorizationHandler, MeanHandler, MedianHandler, 
                        RemoveHandler, ConstantHandler, InterpolateHandler,
                        GroupedHandler)
