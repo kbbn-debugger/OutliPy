@@ -17,7 +17,8 @@ class MADDetector(OutlierDetectorBase):
             self,
             *,
             threshold: float = 3.5,
-            columns: Optional[List[str]] = None
+            columns: Optional[List[str]] = None,
+            exclude: Optional[List[str]] = None
     ):
         if threshold < 0:
             raise ConfigurationException(
@@ -29,7 +30,8 @@ class MADDetector(OutlierDetectorBase):
         
         super().__init__(
             threshold = threshold,
-            columns = columns
+            columns = columns,
+            exclude = exclude
         )
 
     

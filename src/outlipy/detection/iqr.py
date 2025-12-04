@@ -16,7 +16,8 @@ class IQRDetector(OutlierDetectorBase):
     def __init__(
             self,
             threshold: float = 1.5,
-            columns: Optional[List[str]] = None
+            columns: Optional[List[str]] = None,
+            exclude: Optional[List[str]] = None
     ):
         if threshold < 0:
             raise ConfigurationException(
@@ -28,7 +29,8 @@ class IQRDetector(OutlierDetectorBase):
         
         super().__init__(
             threshold = threshold,
-            columns = columns
+            columns = columns,
+            exclude = exclude
         )
 
 

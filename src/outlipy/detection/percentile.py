@@ -17,7 +17,8 @@ class Percentile(OutlierDetectorBase):
             self,
             *,
             threshold: Union[Tuple[float, float], float] = (0.05, 0.95),
-            columns: Optional[List[str]] = None
+            columns: Optional[List[str]] = None,
+            exclude: Optional[List[str]] = None
     ):
         if not (isinstance(threshold, tuple) and len(threshold) == 2):
             raise ConfigurationException(
@@ -37,7 +38,8 @@ class Percentile(OutlierDetectorBase):
         
         super().__init__(
             threshold = threshold,
-            columns = columns
+            columns = columns,
+            exclude = exclude
         )
 
     

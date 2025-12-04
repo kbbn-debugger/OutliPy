@@ -20,7 +20,8 @@ class OutlierAccessor:
             self, 
             *, 
             threshold: float = 1.5, 
-            columns: Optional[List[str]] = None
+            columns: Optional[List[str]] = None,
+            exclude: Optional[List[str]] = None
     ) -> pd.DataFrame:
         """
         Detect outliers using the IQR method.
@@ -33,7 +34,7 @@ class OutlierAccessor:
         :rtype: DataFrame
         """
 
-        method = IQRDetector(threshold = threshold, columns = columns)
+        method = IQRDetector(threshold = threshold, columns = columns, exclude = exclude)
         mask = method.detect(df = self._df)
         return mask
 
@@ -41,7 +42,8 @@ class OutlierAccessor:
             self, 
             *, 
             threshold: float = 3.0, 
-            columns: Optional[List[str]] = None
+            columns: Optional[List[str]] = None,
+            exclude: Optional[List[str]] = None
     ) -> pd.DataFrame:
         """
         Detect outliers using the Zscore method.
@@ -53,7 +55,7 @@ class OutlierAccessor:
         :rtype: DataFrame
         """
 
-        method = ZScoreDetector(threshold = threshold, columns = columns)
+        method = ZScoreDetector(threshold = threshold, columns = columns, exclude = exclude)
         mask = method.detect(df = self._df)
         return mask
     
@@ -61,13 +63,14 @@ class OutlierAccessor:
             self,
             *,
             threshold: float = 3.0,
-            columns: Optional[List[str]] = None
+            columns: Optional[List[str]] = None,
+            exclude: Optional[List[str]] = None
     ) -> pd.DataFrame:
         """
         
         """
 
-        method = MADDetector(threshold = threshold, columns = columns)
+        method = MADDetector(threshold = threshold, columns = columns, exclude = exclude)
         mask = method.detect(df = self._df)
         return mask
 
@@ -75,10 +78,11 @@ class OutlierAccessor:
             self,
             *,
             threshold: Union[Tuple[float, float], float] = (0.05, 0.95),
-            columns: Optional[List[str]] = None
+            columns: Optional[List[str]] = None,
+            exclude: Optional[List[str]] = None
     ) -> pd.DataFrame:
         
-        method = Percentile(threshold = threshold, columns = columns)
+        method = Percentile(threshold = threshold, columns = columns, exclude = exclude)
         mask = method.detect(df = self._df)
         return mask
     

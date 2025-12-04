@@ -14,9 +14,15 @@ class OutlierDetectorBase(ABC):
         columns (Optional[List[str]]): Columns to analyze. If None, all numeric columns are used.
     """
 
-    def __init__(self, threshold: Union[float, Tuple[float, float]] = 3.0, columns: Optional[List[str]] = None):
+    def __init__(
+            self, 
+            threshold: Union[float, Tuple[float, float]] = 3.0, 
+            columns: Optional[List[str]] = None,
+            exclude: Optional[List[str]] = None
+    ):
         self.threshold = threshold
         self.columns = columns
+        self.exclude = exclude
         self._fitted = False
         self._scores = {}  # Stores computed outlier scores per column
 
@@ -37,8 +43,9 @@ class OutlierDetectorBase(ABC):
 
         detector_name = self.__class__.__name__
         columns = self.columns
+        exclude = self.exclude
 
-        validated_cols = validate_input(df, detector_name, columns)
+        validated_cols = validate_input(df, detector_name, columns, exclude)
 
         self.columns = validated_cols
 

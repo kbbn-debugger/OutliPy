@@ -12,7 +12,8 @@ from ..exceptions import InvalidColumnException, HandlingException
 def validate_input(
         df: pd.DataFrame, 
         detector_name: str, 
-        columns: Optional[List[str]]
+        columns: Optional[List[str]],
+        exclude: Optional[List[str]] = None
 ) -> List[str]:
     """
     Check if dataframe is valid and columns exist.
@@ -78,12 +79,27 @@ def validate_input(
                 suggestion = "Remove duplicate column names from your configuration list."
             )               
 
+    # Apply the exclusion
+    final_cols = cols_to_check.copy()
+
+    if exclude:
+        # Create a list that contains only the columns NOT in the exclude list
+        final_cols = [col for col in final_cols if col not in exclude]
+
+    # Check if any columns are left for analysis after exclusion
+    if not final_cols:
+        raise InvalidColumnException(
+             method=detector_name,
+             error_code="ICE002",
+             suggestion="No numeric columns left for analysis after filtering and exclusion."
+        )
+
     # Validate specific columns
     missing_cols = []
     invalid_cols = []
     nan_inf_cols = []
 
-    for col in cols_to_check:
+    for col in final_cols:
         # Check if column/s are missing
         if col not in df.columns:
             missing_cols.append(col)
@@ -103,11 +119,10 @@ def validate_input(
             nan_cols = nan_inf_cols
         )
     
-    return cols_to_check
+    return final_cols
 
 
-
-
+# under utilized
 # -----------------------------------------------------------
 #                       validate strategy 
 # -----------------------------------------------------------

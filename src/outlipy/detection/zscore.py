@@ -19,7 +19,8 @@ class ZScoreDetector(OutlierDetectorBase):
     def __init__(
             self,
             threshold: float = 3.0,
-            columns: Optional[List[str]] = None
+            columns: Optional[List[str]] = None,
+            exclude: Optional[List[str]] = None
     ):
         if threshold <= 0:
             raise ConfigurationException(
@@ -31,7 +32,8 @@ class ZScoreDetector(OutlierDetectorBase):
         
         super().__init__(
             threshold = threshold,
-            columns = columns
+            columns = columns,
+            exclude = exclude
         )
     
     def _compute_scores(self, df: pd.DataFrame):
