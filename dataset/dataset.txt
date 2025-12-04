@@ -1,0 +1,13 @@
+Name: Breast Cancer Dataset
+file name: breast-cancer.csv
+link: https://www.kaggle.com/datasets/yasserh/breast-cancer-dataset
+publisher: M Yasser H
+License: (as of 04/12/2025) CC0: Public Domain
+
+
+
+Name: Salary vs Experience
+file name: Salary_Data.csv
+link: https://www.kaggle.com/datasets/mubeenshehzadi/salary-dataset
+publisher: Mubeen Shehzadi
+License: (as of 04/12/2025) CC0: Public Domain
