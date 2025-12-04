@@ -25,6 +25,7 @@ The Github Repository is found here: https://github.com/kbbn-debugger/OutliPy
 
 ```bash
 pip install outlipy
+```
 
 # Dependencies
 
