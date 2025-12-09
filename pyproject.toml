@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "outlipy"
-version = "0.1.0-alpha"
+version = "0.1.0-alpha1"
 description = "A Python library for outlier detection and handling."
 authors = [
     { name = "Kevin Lloyd Baul", email = "baul.kevinlloyd@gmail.com" },
